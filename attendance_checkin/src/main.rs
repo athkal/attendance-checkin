@@ -10,6 +10,8 @@ fn read_line() -> String {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    //normal compile - cargo build
+    //cross compile - cross build --target=x86_64-unknown-linux-gnu
     println!("enter user id: ");
     let user_id = read_line();
     println!("enter genesis password: ");
