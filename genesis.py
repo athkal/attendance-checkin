@@ -4,9 +4,9 @@ s = requests.Session()
 
 def visit_main_page():
 	global s
-	s.get("https://parents.whrhs.org/genesis/sis/view?gohome=true", verify=False)
+	s.get("https://parents.whrhs.org/genesis/sis/view?gohome=true")
 	#print cookies for testing i guess
-	print(s.cookies.get_dict())
+	#print(s.cookies.get_dict())
 
 def login_to_genesis(username, password):
 	global s
@@ -15,7 +15,7 @@ def login_to_genesis(username, password):
 		"j_password" : password
 	}
 	
-	resp = s.post("https://parents.whrhs.org/genesis/sis/j_security_check", data=query, verify=False)
+	resp = s.post("https://parents.whrhs.org/genesis/sis/j_security_check", data=query)
 	print("attempted login")
 
 def apply_for_attendance(user_id):
@@ -28,7 +28,7 @@ def apply_for_attendance(user_id):
 		"fldReason" : ""
 	}
 	api_url = "https://parents.whrhs.org/genesis/parents?tab1=studentdata&tab2=attendance&tab3=notify&studentid={}&action=notifyOffice".format(user_id)
-	s.post(api_url, data=query, verify=False)
+	s.post(api_url, data=query)
 	print("attempted attendance post")
 
 user_id = input("enter user id")
@@ -38,3 +38,4 @@ user_email = str(user_id) + "@whrhs-stu.org"
 visit_main_page()
 login_to_genesis(user_email, password)
 apply_for_attendance(user_id)
+print("done")
