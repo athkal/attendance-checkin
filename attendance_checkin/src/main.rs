@@ -12,6 +12,7 @@ fn read_line() -> String {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     //normal compile - cargo build
     //cross compile - cross build --target=x86_64-unknown-linux-gnu
+
     println!("enter user id: ");
     let user_id = read_line();
     println!("enter genesis password: ");
@@ -28,7 +29,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut genesis_checkin = GenesisCheckin { agent };
     genesis_checkin.visit_main_site().await?;
     genesis_checkin
-        .login_to_site(&format!("{}@whrhs-stu.org", user_id), &password)
+        .login_to_site(&format!("{}@whrhs-stu.org", &user_id), &password)
         .await?;
     genesis_checkin.send_attendance(&user_id).await?;
 
@@ -62,6 +63,7 @@ impl GenesisCheckin {
             .form(&params)
             .send()
             .await?;
+
         for cookie in resp.cookies() {
             println!("{}: {}", cookie.name(), cookie.value());
         }
