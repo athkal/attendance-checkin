@@ -2,13 +2,11 @@ import requests
 
 s = requests.Session()
 
-def visit_main_page():
+def visit_main_page(): #this visits the main page to get a JSESSIONID cookie
 	global s
 	s.get("https://parents.whrhs.org/genesis/sis/view?gohome=true")
-	#print cookies for testing i guess
-	#print(s.cookies.get_dict())
 
-def login_to_genesis(username, password):
+def login_to_genesis(username, password): #this logs into genesis and makes the JSESSIONID valid
 	global s
 	query = {
 		"j_username" : username,
@@ -18,7 +16,7 @@ def login_to_genesis(username, password):
 	resp = s.post("https://parents.whrhs.org/genesis/sis/j_security_check", data=query)
 	print("attempted login")
 
-def apply_for_attendance(user_id):
+def apply_for_attendance(user_id): #this sends a POST request to the attendance section and sets you as present
 	global s
 	query = {
 		str(user_id) : "on",
