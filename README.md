@@ -4,6 +4,8 @@ Automatically logs you into genesis and checks you into the attendance office.
 
 Prototype V1 in python, "final" in rust
 
+## **I am not liable for any trouble from school you get with this, or any issues with genesis, or any issues with the program.**
+
 I do not offer support in this projects, here is some information:
 
 
